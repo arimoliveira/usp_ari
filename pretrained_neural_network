@@ -56,3 +56,18 @@ options = trainingOptions('sgdm', ...
 YValidation = imdsValidation.Labels;
 accuracy = mean(YPred == YValidation)
 
+% Geração de gráfico com predição por categoria
+[~,idx] = sort(scores,'descend');
+idx = idx(12:-1:1);
+classNamesTop = label;
+scoresTop = scores(idx);
+
+figure
+barh(scoresTop)
+% xlim([0.052 0.961])
+% ylim([0.35 6.17])
+title('Predictions Rank')
+xlabel('Probability')
+yticklabels(label)
+grid on
+
